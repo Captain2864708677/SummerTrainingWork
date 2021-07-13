@@ -23,9 +23,13 @@ const routes = [
         path: '/user',
         name: 'User',
         component: () => import('@/views/user')
-
       }
     ]
+  },
+  {
+    path: '/searchform',
+    name: 'SearchForm',
+    component: () => import('@/views/homepage/search')
   }
 ]
 

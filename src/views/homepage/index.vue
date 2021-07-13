@@ -1,16 +1,34 @@
 <template>
   <div>
-    这里是首页
+    <van-search
+        class="searchTop"
+        shape="round"
+        v-model="value"
+        placeholder="牛仔运动短裤"
+        @click="onSearch"
+        input-align="center">
+    </van-search>
   </div>
 
 </template>
 
 <script>
 export default {
-  name: "HomePage"
+  name: "HomePage",
+  data(){
+    return {
+      value: ''
+    }
+  },
+  methods: {
+    onSearch(){
+      this.$router.push('/searchform')
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+
 
 </style>
