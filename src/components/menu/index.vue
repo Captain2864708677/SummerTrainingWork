@@ -19,7 +19,7 @@ export default {
     }
   },
   created() {
-    this.$router.push('/homepage')
+    this.$router.push('/homepagej')
   },
   methods: {
     onChange(index){
