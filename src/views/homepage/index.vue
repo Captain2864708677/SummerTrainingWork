@@ -1,6 +1,6 @@
 <template>
   <div>
-    这里是首页,随便加点啥
+    这里是首页,ljx到此一游
   </div>
 
 </template>
