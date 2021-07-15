@@ -1,13 +1,20 @@
 <template>
   <div>
-    这里是个人中心
+    <div>
+      <van-icon name="setting-o" @click="userDetail" />
+    </div>
   </div>
 
 </template>
 
 <script>
 export default {
-  name: "User"
+  name: "User",
+  methods:{
+    userDetail(){
+      this.$router.push('./userDetail')
+    }
+  }
 }
 </script>
 

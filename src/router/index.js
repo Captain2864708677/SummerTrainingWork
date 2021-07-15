@@ -24,6 +24,26 @@ const routes = [
         name: 'User',
         component: () => import('@/views/user')
 
+      },
+      {
+        path: '/userDetail',
+        name: 'userDetail',
+        component: () => import('@/views/user/userDetail')
+      },
+      {
+        path: '/addressMs',
+        name: 'addressMs',
+        component: () => import('@/views/user/address/addressMs')
+      },
+      {
+        path: '/addAddress',
+        name: 'addAddress',
+        component: () => import('@/views/user/address/addAddress')
+      },
+      {
+        path: '/editAddress',
+        name: 'editAddress',
+        component: () => import('@/views/user/address/editAddress')
       }
     ]
   }
