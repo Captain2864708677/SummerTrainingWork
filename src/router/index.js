@@ -44,6 +44,26 @@ const routes = [
         path: '/editAddress',
         name: 'editAddress',
         component: () => import('@/views/user/address/editAddress')
+      },
+      {
+        path: '/productDetail',
+        name: 'productDetail',
+        component: () => import('@/views/product')
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: () => import('@/views/order')
+      },
+      {
+        path: '/beforePay',
+        name: 'beforePay',
+        component: () => import('@/views/order/beforePay')
+      },
+      {
+        path: '/afterPay',
+        name: 'afterPay',
+        component: () => import('@/views/order/afterPay')
       }
     ]
   }

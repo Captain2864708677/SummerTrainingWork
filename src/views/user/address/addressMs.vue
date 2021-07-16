@@ -1,5 +1,13 @@
 <template>
   <div>
+    <van-nav-bar
+        title="收货地址"
+        left-text="返回"
+        right-text="确定"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+    ></van-nav-bar>
     <van-address-list
         v-model="chosenAddressId"
         :list="list"
@@ -27,11 +35,13 @@ export default {
     return {
       url: {
         get: module + '/list',
-        del: module + '/del'
+        del: module + '/del',
+        getone:module +'/getone'
       },
       chosenAddressId: null,
       list: [],
       customerId: null,
+      address:''
     }
   },
   created() {
@@ -69,6 +79,22 @@ export default {
       this.post(this.url.del, {chosenAddressId: this.chosenAddressId}, () => {
         this.getAddress()
       })
+    },
+    onClickLeft(){
+      this.$router.go(-1)
+    },
+    onClickRight(){
+      this.get(this.url.getone,{chosenAddressId: this.chosenAddressId},response =>{
+        this.address = response.address
+        this.$router.push({
+          path: '/order',
+          query: {
+            chosenAddressId:this.chosenAddressId,
+            address:this.address
+          }
+        })
+      })
+
     }
   }
 }

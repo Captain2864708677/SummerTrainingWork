@@ -69,7 +69,7 @@ export default {
     change(value){
       if (value){
         this.get(this.url.setDefault,{customerId:this.AddressInfo.customerId},response =>{
-          Toast(response)
+          Toast.success(response)
         })
       }
     }
