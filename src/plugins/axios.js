@@ -2,7 +2,6 @@
 
 import Vue from 'vue';
 import axios from "axios";
-
 import {Notify}  from 'vant'
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -10,6 +9,7 @@ import {Notify}  from 'vant'
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
+  baseURL: 'http://127.0.0.1:8090'
   // baseURL: 'http://192.168.217.139:8090'
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
@@ -63,21 +63,21 @@ Vue.use(Plugin)
 export default Plugin;
 
 const request = (url, method, params, callback) => {
-  const zymconfig ={
+  const mzconfig ={
     url: url,
     method: method
   }
   if(method==='get'){
-    zymconfig.params = params
+    mzconfig.params = params
   }else{
     const formData = new FormData()
     for(let key in params){
       formData.append(key,params[key])
     }
-    zymconfig.data = formData
+    mzconfig.data = formData
   }
 
-  _axios.request(zymconfig).then(response => {
+  _axios.request(mzconfig).then(response => {
     if (response.data.code === 200) {
       callback(response.data)
     } else {
@@ -93,22 +93,19 @@ const request = (url, method, params, callback) => {
     })
   })
 }
-
-// Vue.prototype.axios = _axios
 Vue.prototype.request = request
 Vue.prototype.get = (url, params, callback)=>{
   request(url, 'get',params, response =>{
-    console.log(response)
     callback(response.obj)
   })
 }
-// Vue.prototype.post = (url, params, callback)=>{
-//   request(url, 'post',params, response =>{
-//     console.log(response)
-//     Notify({
-//       type:'success',
-//       message: response.message
-//     })
-//     callback(response.obj)
-//   })
-// }
+Vue.prototype.post = (url, params, callback)=>{
+  request(url, 'post',params, response =>{
+    console.log(response)
+    Notify({
+      type:'success',
+      message: response.message
+    })
+    callback(response.obj)
+  })
+}

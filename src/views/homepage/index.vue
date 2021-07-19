@@ -69,6 +69,12 @@
           </tab>
       </div>
 
+    <div>
+      <span>
+        <van-button round type="info" @click="toProductDetail(params)">商品详情页</van-button>
+      </span>
+    </div>
+
 
   </div>
 </template>
@@ -87,7 +93,18 @@ export default {
       this.getcategories()
   },
   data(){
+    const module = '/pms-product'
     return{
+      url: {
+        getone: module + '/getone',
+        getData: module + '/getData'
+      },
+      tabs: [
+        {title: '商品详情', component: () => import('./components/productdetail')}
+      ],
+      value: '',
+      params: [],
+
       swiperImgs:[
        require( '../../assets/swipe/5.jpg'),
        require( '../../assets/swipe/3.jpg'),
@@ -101,28 +118,45 @@ export default {
         },
     }
   },
+  created() {
+    this.getData()
+  },
   methods:{
-        getTab(idx){
-            this.query.tabselect = this.tabdata[idx].id
-            console.log('idx',idx,this.query.tabselect)
-        },
-      getcategories(){
-          this.get('http://localhost:8082/pms-category/getparent',{},response =>{
-              // console.log(response)
-              this.tabdata = response
-          })
-      },
-      toSearch(){
-            this.$router.push('../search')
-      },
-      login(){
-        this.$router.push()
-      },
+    getData() {
+      this.get(this.url.getData,{},response => {
+        console.log(response)
+        this.params = response
+      })
     },
+    getTab(idx){
+        this.query.tabselect = this.tabdata[idx].id
+        console.log('idx',idx,this.query.tabselect)
+    },
+    getcategories(){
+        this.get('http://localhost:8082/pms-category/getparent',{},response =>{
+            // console.log(response)
+            this.tabdata = response
+        })
+    },
+    toSearch(){
+          this.$router.push('../search')
+    },
+    login(){
+      this.$router.push()
+    },
+    toProductDetail(params){
+      this.$router.push({
+        path: '/productdetail',
+        query: {
+          params : params
+        }
+      })
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
     .list-style{
         margin-top: -1rem;
     }
@@ -135,7 +169,6 @@ export default {
         font-size: 3px;
         margin: 0.1rem 0.1rem 0 0 ;
         background: rgba(246, 247, 249, 0.15);
-
     }
     .login-btn{
         margin: .45rem 0 .5rem .1rem;
