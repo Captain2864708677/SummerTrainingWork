@@ -8,6 +8,11 @@
         @click="onSearch"
         input-align="center">
     </van-search>
+    <div>
+      <span>
+        <van-button round type="info" @click="toProductDetail(params)">商品详情页</van-button>
+      </span>
+    </div>
   </div>
 
 </template>
@@ -16,13 +21,40 @@
 export default {
   name: "HomePage",
   data(){
+    const module = '/pms-product'
     return {
-      value: ''
+      url: {
+        getone: module + '/getone',
+        getData: module + '/getData'
+      },
+      tabs: [
+        {title: '商品详情', component: () => import('./components/productdetail')}
+      ],
+      value: '',
+      params: []
     }
   },
+  created() {
+    this.getData()
+  },
   methods: {
+    getData() {
+      this.get(this.url.getData,{},response => {
+        console.log(response)
+        this.params = response
+      })
+    },
+
     onSearch(){
       this.$router.push('/searchform')
+    },
+    toProductDetail(params){
+      this.$router.push({
+        path: '/productdetail',
+        query: {
+          params : params
+        }
+      })
     }
   }
 }
