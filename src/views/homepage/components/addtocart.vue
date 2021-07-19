@@ -6,8 +6,11 @@
       </template>
       <template #label>
         库存 {{standardShow.stock}} 件
-        <div class="showCategoryIntroduction">
+        <div v-if="value === null" class="showCategoryIntroduction">
           请选择分类
+        </div>
+        <div v-else class="showCategoryIntroduction">
+          {{value[0] + ' ' + value[1]}}
         </div>
       </template>
     </van-cell>
