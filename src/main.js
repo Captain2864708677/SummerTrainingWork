@@ -1,9 +1,19 @@
+import './assets/rem'//rem适配
+
 import Vue from 'vue'
 import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/vant.js'
+
+import { Swipe, SwipeItem,Icon } from 'vant';//轮播图 icon
+
+Vue.prototype.img = (path) => {
+  return 'http://192.168.217.139:9000/images/' + path
+}
+
+Vue.use(Swipe).use(SwipeItem).use(Icon);
 
 Vue.config.productionTip = false
 
