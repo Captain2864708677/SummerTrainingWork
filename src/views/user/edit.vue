@@ -9,7 +9,7 @@
                         placeholder="请输入账户名"
                         readonly/>
                 <van-field
-                        v-model="customer.nickyname"
+                        v-model="customer.nickyName"
                         required
                         label="昵称"
                         placeholder="请输入昵称"/>
@@ -61,7 +61,7 @@
                     params: {
                         id: this.customer.id,
                         account: this.customer.account,
-                        nickyname:this.customer.nickyname,
+                        nickyName:this.customer.nickyName,
                         sex:this.customer.sex,
                         password:this.customer.password,
                         phone:this.customer.phone

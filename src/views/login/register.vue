@@ -14,7 +14,7 @@
                         label="账户名"
                         placeholder="请输入账户名"/>
                 <van-field
-                        v-model="customer.nickyname"
+                        v-model="customer.nickyName"
                         required
                         label="昵称"
                         placeholder="请输入昵称"/>
@@ -66,7 +66,7 @@
                 value: '',
                 customer: {
                     account:'',
-                    nickyname:'',
+                    nickyName:'',
                     sex: '',
                     phone:'',
                     password:''
@@ -91,7 +91,7 @@
                     axios.get('http://127.0.0.1:8083/cms-customer/add', {
                         params: {
                             account: this.customer.account,
-                            nickyname:this.customer.nickyname,
+                            nickyName:this.customer.nickyName,
                             sex:this.customer.sex,
                             password:this.customer.password,
                             phone:this.customer.phone

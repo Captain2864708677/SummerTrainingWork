@@ -67,12 +67,16 @@
                     console.log(response);
                     var message=response.data.message;
                     console.log(message);
+                    if(message=="密码错误"){
+                        this.$toast('密码不一致,请重新输入');
+                    }
                     if(message=="修改用户密码成功"){
                         this.$toast('修改用户密码成功,请重新登录');
                         this.$router.push({
                             path: '/login'
                         })
                     }
+
                 }.bind(this))
             },
             cansel(){

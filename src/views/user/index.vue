@@ -3,11 +3,14 @@
     <p class="title">个人中心</p>
       <van-cell-group title="个人信息">
         <van-button round  type="info" plain size="small" native-type="submit" @click="edit">修改信息</van-button>
-        <van-cell title="账户" :value="customer.account"/>
-        <van-cell title="昵称" :value="customer.nickyname" />
-        <van-cell title="手机号" :value="customer.phone" />
-        <van-cell title="性别" :value="customer.sex" />
+        <div class="my-form">
+          <van-cell title="账户" :value="customer.account"/>
+          <van-cell title="昵称" :value="customer.nickyName" />
+          <van-cell title="手机号" :value="customer.phone" />
+          <van-cell title="性别" :value="customer.sex" />
+        </div>
 
+        <div class="my-form">
         <van-row>
           <van-col span="13">
             <van-cell title="修改登录密码"/>
@@ -42,6 +45,7 @@
             </van-button>
           </van-col>
         </van-row>
+        </div>
 
       </van-cell-group>
       <div style="margin: 16px;">
@@ -90,5 +94,9 @@ export default {
     background-color: #20a0ff;
     color: #fff;
     text-align: center;
+  }
+  .my-form{
+    text-align: left;
+    margin-left: 30px;
   }
 </style>
