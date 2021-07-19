@@ -89,6 +89,7 @@ export default {
         tab
     },
   created(){
+    this.getData()
     console.log(this.tabdata)
       this.getcategories()
   },
@@ -117,9 +118,6 @@ export default {
             tabselect:''
         },
     }
-  },
-  created() {
-    this.getData()
   },
   methods:{
     getData() {
