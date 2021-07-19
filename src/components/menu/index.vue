@@ -15,11 +15,14 @@ export default {
   name: "Index",
   data(){
     return{
-      active: ''
+      active: '',
     }
+  },
+  created(){
   },
   methods: {
     onChange(index){
+      console.log(index)
       this.$router.push(index)
     }
   }
