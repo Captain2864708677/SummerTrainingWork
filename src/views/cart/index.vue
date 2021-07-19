@@ -14,11 +14,13 @@
             </template>
         </van-nav-bar>
         </div>
+
         <van-search
                 v-model="query.productName"
                 shape="round"
                 background=white
                 placeholder="请输入搜索关键词"
+                class="van-search"
         >
             <template #left>
                 <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="search" >搜索</van-button>
@@ -198,7 +200,7 @@ export default {
 }
 .van-nav-bar {
     background-color: orangered;
-    height: 52px;
+
 }
 #mine /deep/ .van-nav-bar__title{
     color: white !important;
@@ -209,6 +211,9 @@ export default {
 }
 .van-card__thumb{
     margin-right:-150px!important;
+}
+.van-search{
+   margin-top: 48px;
 }
 .van-card__price{
     integer-font-size:large;
