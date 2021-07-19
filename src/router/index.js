@@ -24,6 +24,28 @@ const routes = [
         name: 'User',
         component: () => import('@/views/user')
 
+      },
+      {
+        path: '/edit',
+        name: 'CustomerEdit',
+        component: () => import('@/views/user/edit')
+
+      },
+      {
+        path: '/editPwd',
+        name: 'CustomerEditPwd',
+        component: () => import('@/views/user/editPwd')
+
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/login')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('@/views/login/register')
       }
     ]
   }
