@@ -47,6 +47,8 @@
         :skuStock="skuStock"
         :skuValueList="skuValueList"
         :cartValue="cartValue"
+        :spuValue="spuValue"
+        :product="product"
         @getProductById="getProductById"
         @closeAddCart="closeAddCart"
       ></component>
