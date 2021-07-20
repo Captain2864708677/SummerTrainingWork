@@ -87,13 +87,14 @@
         <!-- 商品详情 -->
         <div >
             <van-dialog
-                    class="product-detail"
-                    v-model:show.sync="show" title="商品详情页"
-                        :showConfirmButton=false
+                v-if="show"
+                class="product-detail"
+                v-model:show.sync="show" title="商品详情页"
+                :showConfirmButton=false
             >
                 <detail
-                        :productId="productId"
-                        :visible.sync="show"
+                  :productId="productId"
+                  :visible.sync="show"
                 ></detail>
             </van-dialog>
         </div>
@@ -103,7 +104,7 @@
 
 <script>
     // import store from '../../../store'
-    import detail from '../detail'
+    import detail from '@/views/homepage/components/productdetail'
     export default {
         name: "Tab",
         // store,
@@ -165,6 +166,7 @@
             }
         },
         create(){
+            this.productId = -1
             this.getBrands()
         },
         methods:{
@@ -172,7 +174,7 @@
                 if(this.aim != ''){
                     this.query.name = this.aim
                     // console.log(this.query)
-                    this.get('http://localhost:8082/pms-product/getProductByName',this.query,response =>{
+                    this.get('http://127.0.0.1:8090/pms-product/getProductByName',this.query,response =>{
                         // console.log(response)
                         this.liststate.list = response
                         this.count = this.liststate.list.length
@@ -181,7 +183,7 @@
                 if(this.select != ''){
                     this.query.categoryId = this.select
                     // console.log(this.query)
-                    this.get('http://localhost:8082/pms-product/getByCategory',this.query,response =>{
+                    this.get('http://127.0.0.1:8090/pms-product/getByCategory',this.query,response =>{
                         // console.log(response)
                         this.liststate.list = response
                         this.count = this.liststate.list.length
@@ -206,7 +208,7 @@
                 }
                 this.query.brandIds = brandids
                 console.log(this.query.brandIds)
-                this.get('http://localhost:8082/pms-brand/getByids',this.query,response =>{
+                this.get('http://127.0.0.1:8090/pms-brand/getByids',this.query,response =>{
                     // console.log(response)
                     brds = response
                     console.log(brds)
@@ -222,7 +224,7 @@
                 // this.$store.commit('setProductId',productId)
                 this.show = true
                 this.productId = productId
-                console.log(productId)
+
                 // console.log(this.$store)
                 // this.$router.push('../detail')//跳转商品详情页
             }
@@ -253,7 +255,9 @@
     }
     .product-detail{
         width:100%;
-        /*height:100%;*/
+        height:90%;
+        margin-bottom: 0;
+        border-radius: 0;
     }
 
 </style>

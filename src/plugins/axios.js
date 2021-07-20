@@ -10,10 +10,6 @@ import {Notify}  from 'vant'
 
 let config = {
   baseURL: 'http://127.0.0.1:8090'
-  // baseURL: 'http://192.168.217.139:8090'
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);

@@ -69,13 +69,6 @@
           </tab>
       </div>
 
-    <div>
-      <span>
-        <van-button round type="info" @click="toProductDetail(params)">商品详情页</van-button>
-      </span>
-    </div>
-
-
   </div>
 </template>
 
@@ -89,22 +82,12 @@ export default {
         tab
     },
   created(){
-    this.getData()
     console.log(this.tabdata)
       this.getcategories()
   },
   data(){
-    const module = '/pms-product'
     return{
-      url: {
-        getone: module + '/getone',
-        getData: module + '/getData'
-      },
-      tabs: [
-        {title: '商品详情', component: () => import('./components/productdetail')}
-      ],
       value: '',
-      params: [],
 
       swiperImgs:[
        require( '../../assets/swipe/5.jpg'),
@@ -120,18 +103,12 @@ export default {
     }
   },
   methods:{
-    getData() {
-      this.get(this.url.getData,{},response => {
-        console.log(response)
-        this.params = response
-      })
-    },
     getTab(idx){
         this.query.tabselect = this.tabdata[idx].id
         console.log('idx',idx,this.query.tabselect)
     },
     getcategories(){
-        this.get('http://localhost:8082/pms-category/getparent',{},response =>{
+        this.get('http://127.0.0.1:8090/pms-category/getparent',{},response =>{
             // console.log(response)
             this.tabdata = response
         })
@@ -141,14 +118,6 @@ export default {
     },
     login(){
       this.$router.push()
-    },
-    toProductDetail(params){
-      this.$router.push({
-        path: '/productdetail',
-        query: {
-          params : params
-        }
-      })
     }
   }
 }

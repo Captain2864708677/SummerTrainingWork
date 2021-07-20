@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 60px">
+  <div>
     <van-cell style="margin-top: 20px" :title-style="{color: '#db3a3a', fontSize: '14px'}" size="large" >
       <template #title>
          ￥{{standardShow.price}}
@@ -62,6 +62,10 @@ export default {
       type: Array,
       default: () => {return []}
     },
+    product: {
+      type: Object,
+      default: () => {return {}}
+    },
     skuStock: {
       type: Array,
       default: () => {return []}
@@ -115,9 +119,13 @@ export default {
 
       form: {
         detail: null,
-        amount: null,
+        productNum: null,
         price: null,
         productId: null,
+        active: 1,
+        img: null,
+        customerId: 0,
+        productName: null
       }
 
     }
@@ -162,9 +170,11 @@ export default {
     //添加到购物车
     save(){
       this.form.detail = this.showValue
-      this.form.amount = this.amount
+      this.form.productNum = this.amount
       this.form.price = this.standardShow.price
       this.form.productId = this.productId
+      this.form.productName = this.product.name
+      this.form.img = this.product.img
       if (this.cartValue === 0){
         this.post(this.url.add, this.form, () => {
           this.$emit('closeAddCart')

@@ -9,6 +9,7 @@ import './plugins/vant.js'
 import Router from 'vue-router'
 import 'amfe-flexible'
 import 'lib-flexible'
+import { Swipe, SwipeItem,Icon } from 'vant';//轮播图 icon
 
 
 Vue.prototype.img = (path) =>{
@@ -18,12 +19,6 @@ Vue.prototype.img = (path) =>{
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
-}
-
-import { Swipe, SwipeItem,Icon } from 'vant';//轮播图 icon
-
-Vue.prototype.img = (path) => {
-  return 'http://192.168.217.139:9000/images/' + path
 }
 
 Vue.use(Swipe).use(SwipeItem).use(Icon);

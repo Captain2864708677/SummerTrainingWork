@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100vh">
     <div>
       <van-nav-bar left-text="返回" left-arrow @click-left="back">
         <template #right>
@@ -42,11 +42,12 @@
         :style="{ height: '90%' }">
       <component
         :is="cartPop.component"
-        :productId="this.query.productId"
+        :productId="this.productId"
         :skuValue="skuValue"
         :skuStock="skuStock"
         :skuValueList="skuValueList"
         :cartValue="cartValue"
+        :product="product"
         @getProductById="getProductById"
         @closeAddCart="closeAddCart"
       ></component>
@@ -62,7 +63,15 @@
 export default {
   name: "ProductDetail",
 
+  props: {
+    productId: {
+      type: Number,
+      default: null
+    }
+  },
+
   data(){
+    const proId = this.productId
     const module = '/pms-product'
     return {
 
@@ -110,7 +119,7 @@ export default {
       },
       //通过productId获取product对象
       query: {
-        productId: 20
+        productId: proId
       },
       //下面两个是有关图片数组存储时用的
       imgs: '',
@@ -125,7 +134,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push('/homepage')
+      this.$emit('update:visible', false)
     },
     //获取尺码、颜色等分类信息
     getSkuValueByProductId(){
@@ -148,7 +157,6 @@ export default {
     //通过productId获取spuValue信息
     getSpuValueByProductId(){
       this.get(this.url.getSpuValueByProductId, this.query, response => {
-        console.log(response)
         this.spuValue = response
       })
     },
@@ -197,7 +205,7 @@ export default {
 
 .scroll{
   overflow: scroll;
-  height: 510px;
+  height: 400px;
   .titlePosition{
     float: left;
     vertical-align: middle;
