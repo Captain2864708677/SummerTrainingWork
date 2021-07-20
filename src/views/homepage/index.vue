@@ -4,7 +4,7 @@
       <van-sticky>
           <div class="my-sticky">
 
-              <van-row>
+              <van-row class="van-row">
                   <van-col span="6" >
                       <img class="logo" :src=" require( '../../assets/logo.png')"/>
                   </van-col>
@@ -20,8 +20,8 @@
               </van-row>
 
               <!--标签tab-->
-              <van-tabs @click="getTab">
-                  <van-tab v-for="(item,idx) in tabdata" :key="idx" :title="item.name">
+              <van-tabs  style="font-size: .25rem" @click="getTab">
+                  <van-tab class="van-tabs" style="font-size: .25rem" v-for="(item,idx) in tabdata" :key="idx" :title="item.name">
                   </van-tab>
               </van-tabs>
 
@@ -97,7 +97,7 @@ export default {
         tabdata:[],
         girdItem:[],
         query: {
-            tabselect:''
+            tabselect:1
         },
     }
   },
@@ -122,39 +122,55 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    .van-tab{
+        font-size: .5rem;
+    }
+    .van-row{
+        background: #C22B2E;
+        border-radius: 0 0 .2rem .2rem;
+    }
     .list-style{
         margin-top: -1rem;
     }
+    .van-tabs__wrap{
+        /*border-radius: .5rem;*/
+        font-weight: bolder;
+        font-size: .4rem;
+    }
     .my-sticky{
-        background: #ffffff;
+        background: white;
     }
     .ads{
         text-align: center;
-        height: .6rem;line-height: .6rem;
-        font-size: 3px;
-        margin: 0.1rem 0.1rem 0 0 ;
-        background: rgba(246, 247, 249, 0.15);
-
+        height: .5rem;line-height: .6rem;
+        font-size: .22rem;
+        color: white;
+        margin: 0rem 0.1rem 0 0 ;
+        /*background: rgba(246, 247, 249, 0.15);*/
+        /*background: orangered;*/
     }
     .login-btn{
         margin: .45rem 0 .5rem .1rem;
         width: .8rem;
         height: .45rem;
         text-align: center;
-        border: 1px solid #2c3e50;
-        border-radius: .1rem;
+        border: 1px solid red;
+        /*border-radius: .1rem;*/
         font-size: .3rem;
+        background: white;
+        color:#C22B2E;
+        font-weight: bolder;
     }
     .header_search{
     width: 4rem;
         height: 0.5rem;
         margin: 0.45rem 0 0.07rem .1rem;
         padding: 0;
-        background: aliceblue;
-        border-radius: .2rem;
+        background: red;
+        border-radius: .5rem;
     }
-    .van-search_content{
+    .van-search{
         color: #666;
     }
   .myswipe{
@@ -173,6 +189,6 @@ export default {
       margin: .1rem 0 0 0;
   }
     .icon-ad{
-        color: #2c3e50;
+        color: white;
     }
 </style>

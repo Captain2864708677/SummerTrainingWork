@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import axios from "axios";
 
+import qs from 'qs'
+
 import {Notify}  from 'vant'
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -21,6 +23,9 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
+    config.paramsSerializer = (params) => {
+      return qs.stringify(params, {arrayFormat: 'repeat'})//qs处理数组传参格式
+    }
     return config;
   },
   function(error) {

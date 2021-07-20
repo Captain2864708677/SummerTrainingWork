@@ -2,9 +2,9 @@
     <div>
         <!--<div class="icon-back-div">-->
 
-            <van-row>
+            <van-row class="van-row1">
                 <van-col span="2">
-                    <van-icon  size="0.5rem" class="icon-back" name="arrow-left" @click="back"/>
+                    <van-icon color="white" size="0.5rem" class="icon-back" name="arrow-left" @click="back"/>
                 </van-col>
                 <van-col span="1">&nbsp</van-col>
                 <van-col span="17">
@@ -69,8 +69,7 @@
         data(){
             return{
                 histories:[
-                    '呐',
-                    'aaqaa',
+                    '瓜',
                     'aaaea',
                     'aaaav',
                     'aaaad',
@@ -104,14 +103,14 @@
                 this.query.findItem = item
             },
             search(){
-              if(this.show1 == true){
+              if(this.show1 === true){
                   this.showlist = true
                   this.show1 = false
               }
 
-              if(this.findItem != ''){
+              if(this.query.findItem != '' && (this.histories.indexOf(this.findItem)!=-1)){//搜索关键字不为空且历史记录中不存在
                   this.histories.unshift(this.query.findItem)
-                  console.log(this.$router)
+                  console.log('findItem',this.query.findItem)
                   // this.$router.push({path:'../tab',query:{select:this.findItem}})
               }
             },
@@ -123,7 +122,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    .van-row1{
+        background: #C22B2E;
+        border-radius: 0 0 .2rem .2rem;
+    }
     .clear-font{
         color: dodgerblue;
         font-size: .25rem;
@@ -156,32 +159,29 @@
     .history-card{
         text-align: center;
     }
-.icon-back-div{
-    text-align:left;
-    margin: 0 0 0 0;
-    height: 0rem;
-}
     .icon-back{
         size: 0.5rem;
         margin: 0.2rem 0 0 0;
     }
-
     .search-btn{
-        margin: .45rem 0 0 .2rem;
+        margin: .45rem 0 .5rem .1rem;
         width: .8rem;
         height: .45rem;
         text-align: center;
-        border: 1px solid #2c3e50;
+        border: 1px solid red;
         border-radius: .1rem;
         font-size: .3rem;
+        background: white;
+        color:#C22B2E;
+        /*font-weight: bolder;*/
     }
 .header_search{
     width: 5rem;
     height: 1rem;
     font-size: 0.5rem;
-    margin: 0.1rem 0 0.05rem 0;
+    margin: 0.2rem 0 0.05rem 0;
     padding: 0;
-    /*background: aliceblue;*/
-    border-radius: .2rem;
+    background: #C22B2E;
+    /*border-radius: .2rem;*/
 }
 </style>
