@@ -88,7 +88,8 @@ export default {
           query: {
             chosenAddressId:this.chosenAddressId,
             address:this.address,
-            name:this.name
+            name:this.name,
+            identity:2
           }
         })
 

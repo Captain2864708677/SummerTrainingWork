@@ -171,7 +171,13 @@ export default {
                this.orderList[i]=this.checkGroup[i]
 
             }
-            console.log(this.orderList)
+            this.$router.push({
+              path:'order',
+              query:{
+                orderList:this.orderList,
+                identity:1
+              }
+            })
     },
         toDetail(productId){
             this.show=true

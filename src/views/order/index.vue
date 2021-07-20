@@ -26,19 +26,32 @@
 export default {
   name: "order",
   data(){
+    const module = '/cms-customer-address'
     return{
       addressId:null,
       price:25510,
       checked:false,
       time:30 * 60 * 1000,
       defaultAddress:"我是从数据库读出的默认收货地址",
-      name:''
+      name:'',
+      url:{
+        getDefault:module+'/getDefault'
+      }
     }
   },
   created() {
-    this.addressId = this.$route.query.chosenAddressId
-    this.defaultAddress = this.$route.query.address
-    this.name = this.$route.query.name
+    if (this.$route.query.identity === "1"){
+      this.get(this.url.getDefault,{},response =>{
+        this.addressId = response.id
+        this.defaultAddress = response.address
+        this.name = response.name
+      })
+    }else {
+      this.addressId = this.$route.query.chosenAddressId
+      this.defaultAddress = this.$route.query.address
+      this.name = this.$route.query.name
+    }
+
   },
   methods:{
     onSubmit(){
