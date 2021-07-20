@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  /*import Login from "./views/Login";*/
 export default {
   name: 'app'
 }
@@ -32,5 +31,8 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.searchTop {
+  margin-top: 10px;
 }
 </style>
