@@ -8,7 +8,9 @@ import {Dialog} from "vant";
 
 Vue.use(Dialog)
 Vue.config.productionTip = false
-
+Vue.prototype.img = (path) => {
+  return 'http://192.168.56.2:9000/images/'+path
+}
 new Vue({
   router,
   store,
