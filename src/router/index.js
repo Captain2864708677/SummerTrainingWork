@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -68,6 +69,11 @@ const routes = [
         path: '/afterPay',
         name: 'afterPay',
         component: () => import('@/views/order/afterPay')
+      },
+      {
+        path: '/search',
+        name: 'SearchIndex',
+        component: () => import('@/views/search')
       }
     ]
   }
