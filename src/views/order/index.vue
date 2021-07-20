@@ -1,12 +1,4 @@
 <template>
-<!--    <van-tabs v-model="activeName">-->
-<!--        <van-tab title="全部" name="a">内容 1</van-tab>-->
-<!--        <van-tab title="待付款" name="b">内容 2</van-tab>-->
-<!--        <van-tab title="待发货" name="c">内容 3</van-tab>-->
-<!--        <van-tab title="待收货" name="d">内容 4</van-tab>-->
-<!--        <van-tab title="待评价" name="e">内容 5</van-tab>-->
-<!--        <van-tab title="退款/售后" name="f">内容 6</van-tab>-->
-<!--    </van-tabs>-->
     <div id="order">
         <!--导航栏-->
         <van-nav-bar
@@ -24,6 +16,23 @@
             @click="chooseAddress"
             style= "margin-top: 3rem"
         />
+        <!--商品详情-->
+        <van-card
+                :num="this.name"
+                price="2.00"
+                desc="描述信息"
+                title="商品标题"
+                thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+        >
+            <template #tags>
+                <van-tag plain type="danger">标签</van-tag>
+                <van-tag plain type="danger">标签</van-tag>
+            </template>
+            <template #footer>
+                <van-button size="mini">按钮</van-button>
+                <van-button size="mini">按钮</van-button>
+            </template>
+        </van-card>
     <van-cell-group style="margin-top: 0.6rem">
         <van-cell title="送达时间" value="请选择送达时间" is-link/>
 <!--        <van-cell value="共5件" is-link center>-->
@@ -67,6 +76,12 @@
 import {NavBar} from 'vant'
 export default {
   name: "Order",
+  data(){
+      return{
+          num: 2,
+
+      }
+  },
   methods:{
       onClickLeft(){
           this.$router.back()
@@ -75,11 +90,6 @@ export default {
           alert(1)
       }
   }
-    // data(){
-    //   return{
-    //       activeName: 'e'
-    //   }
-    // }
 }
 </script>
 

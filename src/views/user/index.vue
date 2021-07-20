@@ -17,6 +17,8 @@
                 :icon="order.icon"
                 :text="order.title"/>
         </van-grid>
+        <!--填写订单-->
+        <van-button type="primary" to="order">填写订单</van-button>
     </div>
 
 <!--    <van-cell-group inset>-->
