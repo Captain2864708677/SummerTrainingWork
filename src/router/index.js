@@ -36,6 +36,11 @@ const routes = [
         component: () => import('@/views/user/address/addressMs')
       },
       {
+        path: '/addressSelect',
+        name: 'addressSelect',
+        component: () => import('@/views/user/address/addressSelect')
+      },
+      {
         path: '/addAddress',
         name: 'addAddress',
         component: () => import('@/views/user/address/addAddress')

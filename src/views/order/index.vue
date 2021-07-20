@@ -6,7 +6,7 @@
           left-arrow
           @click-left="onClickLeft"
           ></van-nav-bar>
-      <van-cell title="收货地址" :value="defaultAddress" is-link icon="location-o" to="/addressMs" />
+      <van-cell :title="name" :value="defaultAddress" is-link icon="location-o"  @click="address"  />
         <van-submit-bar
             :price="this.price"
             label=""
@@ -28,15 +28,17 @@ export default {
   data(){
     return{
       addressId:null,
-      price:3050,
+      price:25510,
       checked:false,
       time:30 * 60 * 1000,
-      defaultAddress:"我是从数据库读出的默认收货地址"
+      defaultAddress:"我是从数据库读出的默认收货地址",
+      name:''
     }
   },
   created() {
     this.addressId = this.$route.query.chosenAddressId
     this.defaultAddress = this.$route.query.address
+    this.name = this.$route.query.name
   },
   methods:{
     onSubmit(){
@@ -46,6 +48,9 @@ export default {
     onClickLeft(){
       //提交失败，进入订单状态界面
       this.$router.go(-1)
+    },
+    address(){
+      this.$router.push('/addressSelect')
     }
   }
 

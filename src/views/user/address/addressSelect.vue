@@ -23,10 +23,8 @@
 </template>
 
 <script>
-import {Dialog} from 'vant'
-
 export default {
-  name: "addressMs",
+  name: "addressSelect",
   data() {
     const module = '/cms-customer-address'
     return {
@@ -82,7 +80,20 @@ export default {
       this.$router.go(-1)
     },
     onClickRight(){
-      this.$router.push('user')
+      this.get(this.url.getone,{chosenAddressId: this.chosenAddressId},response =>{
+        this.address = response.address
+        this.name = response.name
+        this.$router.push({
+          path: '/order',
+          query: {
+            chosenAddressId:this.chosenAddressId,
+            address:this.address,
+            name:this.name
+          }
+        })
+
+      })
+
     }
   }
 }
