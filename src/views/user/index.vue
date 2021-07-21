@@ -20,13 +20,14 @@
 
         <van-row>
           <van-col span="13">
-            <van-cell title="查看所有订单"/>
+            <van-cell title="查看所有订单" />
           </van-col>
           <van-col span="6"></van-col>
           <van-col span="5">
-            <van-button icon="balance-list" @click=""></van-button>
+            <van-button icon="balance-list" to="state"></van-button>
           </van-col>
         </van-row>
+
         <van-row>
           <van-col span="13">
             <van-cell title="收货地址"/>
@@ -36,6 +37,7 @@
             <van-button icon="location" @click="address"></van-button>
           </van-col>
         </van-row>
+
       </van-cell-group>
       <div style="margin: 16px;">
         <van-button round  type="info" size="small" native-type="submit" @click="logout">退出登录</van-button>
@@ -78,9 +80,6 @@ export default {
     address() {
       this.$router.push({
         path:'./addressMs',
-        query:{
-          identify: 'userDetail'
-        }
       })
     }
   }
