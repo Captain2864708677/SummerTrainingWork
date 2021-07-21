@@ -122,7 +122,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+
     .list-style{
         margin-top: -1rem;
     }

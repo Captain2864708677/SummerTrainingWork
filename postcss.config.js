@@ -1,12 +1,10 @@
-// postcss.config.js
-// Rem布局适配文件
 module.exports = {
     plugins: {
-        'postcss-pxtorem': {
-            rootValue: 75,//设置根元素字体大小
-            propList: ['*'],//可以从px更改到rem的属性
-            // exclude:/node_modules/i,//排除modules目录下所有文件
-            // selectorBlackList:['vant-','my-']//选择器黑名单 过滤掉vant-开头的元素选择器
-        },
-    },
-};
+        autoprefixer: {},
+        'postcss-px2rem-exclude': {
+            //37.5是根据Vant组件的设计稿是375得来的,lib-flexible插件默认是将375分为10等分,如果UI组件的设计稿是750,那么这里的设置就是填750/10=75
+            remUnit: 37.5,
+            exclude: /folder_name/i
+        }
+    }
+}

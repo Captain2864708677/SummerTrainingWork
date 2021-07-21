@@ -76,6 +76,16 @@ const routes = [
         component: () => import('@/views/search')
       }
     ]
+  },
+  {
+    path: '/searchform',
+    name: 'SearchForm',
+    component: () => import('@/views/homepage/search')
+  },
+  {
+    path: '/productdetail',
+    name: 'ProductDetail',
+    component: () => import('@/views/homepage/components/productdetail')
   }
 ]
 
