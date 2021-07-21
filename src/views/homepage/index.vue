@@ -134,7 +134,13 @@ export default {
         font-weight: bolder;
         font-size: .4rem;
     }
+    .van-tabs__wrap{
+        /*border-radius: .5rem;*/
+        font-weight: bolder;
+        font-size: .4rem;
+    }
     .my-sticky{
+        background: white;
         background: white;
     }
     .div-ads{
