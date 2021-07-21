@@ -18,9 +18,9 @@
         style="margin-top: 7px"
         readonly
         clickable
-        label="尺寸"
+        label="类型"
         :value="showValue"
-        placeholder="选择颜色尺码"
+        placeholder="选择类型"
         @click="showPicker = true"
     />
     <van-popup v-model="showPicker" round position="bottom">
@@ -84,7 +84,7 @@ export default {
     }
   },
   data(){
-    const module = '/pms-add-cart'
+    const module = '/cms-shopping-cart'
     const color = this.skuValueList[0]
     const size = this.skuValueList[1]
     return {

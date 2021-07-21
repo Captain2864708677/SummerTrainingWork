@@ -100,11 +100,9 @@ export default {
   methods:{
     getTab(idx){
         this.query.tabselect = this.tabdata[idx].id
-        console.log('idx',idx,this.query.tabselect)
     },
     getcategories(){
         this.get('http://127.0.0.1:8090/pms-category/getparent',{},response =>{
-            // console.log(response)
             this.tabdata = response
         })
     },
