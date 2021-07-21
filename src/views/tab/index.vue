@@ -14,7 +14,6 @@
             </van-dropdown-menu>
 
             <!-- 卡片列表 -->
-
             <div class="list-style" id="list-card">
                 <van-list
                         v-model:loading="liststate.loading"
@@ -43,13 +42,14 @@
         <!-- 商品详情 -->
         <div >
             <van-dialog
-                    class="product-detail"
-                    v-model:show.sync="show" title="商品详情页"
-                        :showConfirmButton=false
+                v-if="show"
+                class="product-detail"
+                v-model:show.sync="show" title="商品详情页"
+                :showConfirmButton=false
             >
                 <detail
-                        :productId="productId"
-                        :visible.sync="show"
+                  :productId="productId"
+                  :visible.sync="show"
                 ></detail>
             </van-dialog>
         </div>
@@ -89,7 +89,11 @@
                     name:'',
                     categoryId:'',
                     brandIds:[],
-                    brandId:''
+                    brandId:'',
+                    productId:'',//传给足迹的数据
+                    customerId:1,//此处用户id
+                    img:'',
+                    price:'',
                 },
                 productId:'',
                 show:false,
@@ -115,6 +119,7 @@
             },
         },
         create(){
+            this.productId = -1
             this.getBrands()
         },
         methods:{
@@ -126,7 +131,6 @@
                         this.liststate.list = response
                         this.origin = this.liststate.list
                         this.count = this.liststate.list.length
-                        console.log('getlist',this.liststate.list)
                     })
                 }else{
                     if(typeof(this.select)!='undefined'){//首页根据分类查询
@@ -145,12 +149,10 @@
               this.liststate.loading = false;
               this.finished = true;
           },
-            getBrands(){
+            getBrands(){//根据当前商品列表获取品牌列表
                 var brand ={}
                     let brandids = []
                     let brds = []
-                    // this.origin = this.liststate.list
-                console.log('origin',this.origin)
                     let products = this.origin
                     for(let i =0;i<products.length;i++){//获取当前商品列表的品牌id
                         if(brandids.indexOf(products[i].brandId) === -1){
@@ -159,13 +161,16 @@
                     }
                     this.query.brandIds = brandids
                 console.log('ids',this.query.brandIds)
-                    this.get('http://localhost:8082/pms-brand/getByids',this.query,response =>{
+                    this.get('http://127.0.0.1:8090/pms-brand/getByids',this.query,response =>{
                        this.brands = response
                         console.log('brands',this.brands)
                     })
             },
-            toDetail(productId){
+            toDetail(productId){//跳转商品详情
                 this.show = true
+                this.get('http://127.0.0.1:8090/cms-footprint/addfootprint',this.query,response =>{
+                    console.log('addfootprint',response)
+                })
                 this.productId = productId
                 console.log(productId)
             },
@@ -305,7 +310,7 @@
 
     .product-detail{
         width:100%;
-        /*height:100%;*/
+        height:90%;
         margin-bottom: 0;
         border-radius: 0;
     }
