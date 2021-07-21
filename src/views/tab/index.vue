@@ -172,7 +172,7 @@
                 if(this.aim != ''){
                     this.query.name = this.aim
                     // console.log(this.query)
-                    this.get('http://localhost:8082/pms-product/getProductByName',this.query,response =>{
+                    this.get('/pms-product/getProductByName',this.query,response =>{
                         // console.log(response)
                         this.liststate.list = response
                         this.count = this.liststate.list.length
@@ -181,7 +181,7 @@
                 if(this.select != ''){
                     this.query.categoryId = this.select
                     // console.log(this.query)
-                    this.get('http://localhost:8082/pms-product/getByCategory',this.query,response =>{
+                    this.get('/pms-product/getByCategory',this.query,response =>{
                         // console.log(response)
                         this.liststate.list = response
                         this.count = this.liststate.list.length
@@ -206,7 +206,7 @@
                 }
                 this.query.brandIds = brandids
                 console.log(this.query.brandIds)
-                this.get('http://localhost:8082/pms-brand/getByids',this.query,response =>{
+                this.get('/pms-brand/getByids',this.query,response =>{
                     // console.log(response)
                     brds = response
                     console.log(brds)
