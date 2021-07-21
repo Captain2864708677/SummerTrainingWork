@@ -69,28 +69,31 @@ const routes = [
         path: '/afterPay',
         name: 'afterPay',
         component: () => import('@/views/order/afterPay')
+
       },
       {
-        path: '/order',
-        name: 'Order',
-        component: () => import('@/views/order')
+        path: '/edit',
+        name: 'CustomerEdit',
+        component: () => import('@/views/user/edit')
+
       },
       {
-        path: '/search',
-        name: 'SearchIndex',
-        component: () => import('@/views/search')
+        path: '/editPwd',
+        name: 'CustomerEditPwd',
+        component: () => import('@/views/user/editPwd')
+
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/login')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('@/views/login/register')
       }
     ]
-  },
-  {
-    path: '/searchform',
-    name: 'SearchForm',
-    component: () => import('@/views/homepage/search')
-  },
-  {
-    path: '/productdetail',
-    name: 'ProductDetail',
-    component: () => import('@/views/homepage/components/productdetail')
   }
 ]
 
