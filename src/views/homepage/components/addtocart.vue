@@ -18,9 +18,9 @@
         style="margin-top: 7px"
         readonly
         clickable
-        label="尺寸"
+        label="类型"
         :value="showValue"
-        placeholder="选择颜色尺码"
+        placeholder="请选择类型"
         @click="showPicker = true"
     />
     <van-popup v-model="showPicker" round position="bottom">
@@ -90,8 +90,8 @@ export default {
     return {
       //保存到购物车
       url: {
-        //添加到数据库
-        add: module + '/add'
+        //添加到数据库或者相同规格时改变数量
+        addOrUpdateCart: module + '/addOrUpdateCart'
 
       },
 
@@ -176,10 +176,19 @@ export default {
       this.form.productName = this.product.name
       this.form.img = this.product.img
       if (this.cartValue === 0){
-        this.post(this.url.add, this.form, () => {
-          this.$emit('closeAddCart')
-          this.$emit('getProductById')
-        })
+        if (this.showValue === ''){
+          Toast.fail({
+            message: '请选择类型',
+            duration: 400,
+            overlay: true,
+            forbidClick: true
+          })
+        }else {
+          this.post(this.url.addOrUpdateCart, this.form, () => {
+            this.$emit('closeAddCart')
+            this.$emit('getProductById')
+          })
+        }
       }else {
         //跳转到直接下单页面
 
