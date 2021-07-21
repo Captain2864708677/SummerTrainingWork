@@ -37,11 +37,13 @@ export default {
       list: [],
       customerId: null,
       address:'',
-      name:''
+      name:'',
+      cartList:[]//从下单页面获取后还得传回下单页面
     }
   },
   created() {
     this.getAddress()
+    this.cartList = this.$route.query.cartList
   },
   methods: {
     getAddress() {
@@ -88,8 +90,7 @@ export default {
           query: {
             chosenAddressId:this.chosenAddressId,
             address:this.address,
-            name:this.name,
-            identity:2
+            name:this.name
           }
         })
 

@@ -44,7 +44,7 @@ export default {
   methods:{
     onClickLeft(){
       //支付失败，进入订单状态界面
-      this.$router.push('/afterPay')
+      this.$router.push({path:'/state',query:{stateId:1}})
     },
     wechat(){
       this.show1 = true
