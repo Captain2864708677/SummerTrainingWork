@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 60px">
+  <div>
     <van-cell style="margin-top: 20px" :title-style="{color: '#db3a3a', fontSize: '14px'}" size="large" >
       <template #title>
          ￥{{standardShow.price}}
@@ -62,6 +62,10 @@ export default {
       type: Array,
       default: () => {return []}
     },
+    product: {
+      type: Object,
+      default: () => {return {}}
+    },
     skuStock: {
       type: Array,
       default: () => {return []}
@@ -77,14 +81,6 @@ export default {
     cartValue:{
       type: Number,
       default: null
-    },
-    spuValue: {
-      type: Array,
-      default: () => {return []}
-    },
-    product: {
-      type: Object,
-      default: () => {return {}}
     }
   },
   data(){
@@ -122,14 +118,14 @@ export default {
       amount: null,
 
       form: {
-        customerId: null,
-        productId: null,
-        price: null,
-        productName: null,
-        productNum: null,
-        img: null,
         detail: null,
-        active: 1
+        productNum: null,
+        price: null,
+        productId: null,
+        active: 1,
+        img: null,
+        customerId: 0,
+        productName: null
       }
 
     }
@@ -173,26 +169,23 @@ export default {
     },
     //添加到购物车
     save(){
-      //此时还没有customerId，就直接默认给0了
-      this.form.customerId = 0
-      this.form.img = this.product.img
-      this.form.productName = this.product.name
       this.form.detail = this.showValue
       this.form.productNum = this.amount
       this.form.price = this.standardShow.price
       this.form.productId = this.productId
-      console.log(this.form)
-      // if (this.cartValue === 0){
-      //   this.post(this.url.add, this.form, () => {
-      //     this.$emit('closeAddCart')
-      //     this.$emit('getProductById')
-      //   })
-      // }else {
-      //   //跳转到直接下单页面
-      //
-      //
-      //
-      // }
+      this.form.productName = this.product.name
+      this.form.img = this.product.img
+      if (this.cartValue === 0){
+        this.post(this.url.add, this.form, () => {
+          this.$emit('closeAddCart')
+          this.$emit('getProductById')
+        })
+      }else {
+        //跳转到直接下单页面
+
+
+
+      }
     }
   }
 }

@@ -18,6 +18,9 @@ export default {
       active: ''
     }
   },
+  created() {
+    this.$router.push('/homepage')
+  },
   methods: {
     onChange(index){
       this.$router.push(index)
