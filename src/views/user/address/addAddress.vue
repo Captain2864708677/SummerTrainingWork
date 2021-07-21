@@ -1,0 +1,57 @@
+<template>
+  <van-address-edit
+      :area-list="areaList"
+      show-postal
+      show-set-default
+      show-search-result
+      :tel-maxlength="11"
+      :area-columns-placeholder="['请选择', '请选择', '请选择']"
+      @save="onSave"
+  />
+</template>
+
+<script>
+import {areaList}  from '@vant/area-data'
+import { Toast } from 'vant'
+export default {
+  name: "addAddress",
+  data(){
+    const module = '/cms-customer-address'
+    return{
+      url:{
+        add : module+'/add',
+        update:module+'/update'
+      },
+      form:{
+        customerId:null,
+        address:'',
+        name:'',
+        tel:'',
+        postalCode:'',
+        isDefault:0
+      },
+      areaList:areaList,
+      id:null
+    }
+  },
+  methods:{
+    onSave(content){
+      this.form.customerId = 1
+      this.form.address = content.province +content.city +content.county +content.addressDetail
+      this.form.name = content.name
+      this.form.tel = content.tel
+      this.form.postalCode = content.postalCode
+      if (content.isDefault === true) {
+        this.form.isDefault = 1
+      }
+      this.post(this.url.add,this.form,()=>{
+        this.$router.push('./addressMs')
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

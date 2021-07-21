@@ -1,15 +1,10 @@
-"use strict";
-
 import Vue from 'vue';
 import axios from "axios";
+import {Notify}  from 'vant'
 
-// Full config:  https://github.com/axios/axios#request-config
-// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  baseURL: 'http://127.0.0.1:8090'
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
@@ -59,3 +54,50 @@ Plugin.install = function(Vue, options) {
 Vue.use(Plugin)
 
 export default Plugin;
+
+const request = (url, method, params, callback) => {
+  const zymconfig ={
+    url: url,
+    method: method
+  }
+  if(method==='get'){
+    zymconfig.params = params
+  }else{
+    const formData = new FormData()
+    for(let key in params){
+      formData.append(key,params[key])
+    }
+    zymconfig.data = formData
+  }
+
+  _axios.request(zymconfig).then(response => {
+    if (response.data.code === 200) {
+      callback(response.data)
+    } else {
+      Notify({
+        type:'success',
+        message: response.data.message
+      })
+    }
+  }).catch(error => {
+    Notify({
+      type:'danger',
+      message: error
+    })
+  })
+}
+Vue.prototype.request = request
+Vue.prototype.get = (url, params, callback)=>{
+  request(url, 'get',params, response =>{
+    callback(response.obj)
+  })
+}
+Vue.prototype.post = (url, params, callback)=>{
+  request(url, 'post',params, response =>{
+    Notify({
+      type:'success',
+      message: response.message
+    })
+    callback(response.obj)
+  })
+}

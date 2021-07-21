@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <van-cell-group inset>
-      <van-cell title="单元格" value="内容" />
-      <van-cell title="单元格" value="内容" label="描述信息" />
+  <div class="detailScan">
+    <van-cell-group class="cell" inset>
+      <van-cell  is-link to="./addressMs"  value="收货地址" icon="location-o"/>
     </van-cell-group>
   </div>
 </template>
@@ -14,5 +13,8 @@ export default {
 </script>
 
 <style scoped>
+  .detailScan{
+    background: linear-gradient(0deg,#ffff00,#f30000);
 
+  }
 </style>

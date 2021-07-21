@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="scan">
     <router-view></router-view>
     <van-tabbar v-model="active" @change="onChange">
       <van-tabbar-item name="/homepage" icon="wap-home">首页</van-tabbar-item>

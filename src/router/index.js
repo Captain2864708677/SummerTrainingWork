@@ -23,11 +23,70 @@ const routes = [
         path: '/user',
         name: 'User',
         component: () => import('@/views/user')
+<<<<<<< HEAD
       },
       {
         path: '/order',
         name: 'Order',
         component: () => import('@/views/order')
+=======
+
+      },
+      {
+        path: '/userDetail',
+        name: 'userDetail',
+        component: () => import('@/views/user/userDetail')
+      },
+      {
+        path: '/addressMs',
+        name: 'addressMs',
+        component: () => import('@/views/user/address/addressMs')
+      },
+      {
+        path: '/addressSelect',
+        name: 'addressSelect',
+        component: () => import('@/views/user/address/addressSelect')
+      },
+      {
+        path: '/addAddress',
+        name: 'addAddress',
+        component: () => import('@/views/user/address/addAddress')
+      },
+      {
+        path: '/editAddress',
+        name: 'editAddress',
+        component: () => import('@/views/user/address/editAddress')
+      },
+      {
+        path: '/productDetail',
+        name: 'productDetail',
+        component: () => import('@/views/product')
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: () => import('@/views/order')
+      },
+      {
+        path: '/beforePay',
+        name: 'beforePay',
+        component: () => import('@/views/order/beforePay')
+      },
+      {
+        path: '/afterPay',
+        name: 'afterPay',
+        component: () => import('@/views/order/afterPay')
+      },
+      {
+        path: '/state',
+        name: 'state',
+        component: () => import('@/views/order/state/index')
+      },
+      {
+        path: '/orderDetail',
+        name: 'orderDetail',
+        component: () => import('@/views/order/orderDetail')
+>>>>>>> zym
       }
     ]
   }
