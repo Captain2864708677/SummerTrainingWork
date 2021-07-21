@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/vant.js'
+import {Dialog} from "vant"
 import Router from 'vue-router'
 import 'amfe-flexible'
 import 'lib-flexible'
@@ -23,6 +24,7 @@ Router.prototype.push = function push(location) {
 
 Vue.use(Swipe).use(SwipeItem).use(Icon);
 
+Vue.use(Dialog)
 Vue.config.productionTip = false
 
 new Vue({
