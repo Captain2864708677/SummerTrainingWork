@@ -190,7 +190,23 @@ export default {
           })
         }
       }else {
-        //跳转到直接下单页面
+        if (this.showValue === ''){
+          Toast.fail({
+            message: '请选择类型',
+            duration: 400,
+            overlay: true,
+            forbidClick: true
+          })
+        }else {
+          //跳转到直接下单页面
+          this.$router.push({
+            path: '/order',
+            query: {
+              cartList: this.form
+            }
+          })
+        }
+
 
 
 
