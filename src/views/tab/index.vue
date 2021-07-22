@@ -28,7 +28,7 @@
               :desc=item.keywords
               :title=item.name
               :thumb=img(item.img)
-              @click="toDetail(item.id)"
+              @click="toDetail(item.id,idx)"
           >
             <template #footer>
               <span>销量:{{item.sold}}</span>
@@ -90,7 +90,11 @@ export default {
         name:'',
         categoryId:'',
         brandIds:[],
-        brandId:''
+        brandId:'',
+        productId:'',//传给足迹的数据
+        customerId:1,//此处用户id
+        img:'',
+        price:'',
       },
       productId:'',
       show:false,
@@ -167,9 +171,17 @@ export default {
         console.log('brands',this.brands)
       })
     },
-    toDetail(productId){//跳转商品详情
+    toDetail(productId,idx){//跳转商品详情
       this.show = true
-      this.productId = productId
+      console.log(this.liststate.list)
+      this.query.productId = this.liststate.list[idx].id
+      console.log('ssss',typeof(this.query.productId))
+      this.query.customerId = this.$store.getters.GET_CUSTOMERID
+      this.query.img = this.liststate.list[idx].img
+      this.query.price = this.liststate.list[idx].price
+      this.get('http://127.0.0.1:8090/cms-footprint/addfootprint',this.query,() =>{
+      })
+      this.productId = this.liststate.list[idx].id
       console.log(productId)
     },
     setBrand(){//按品牌筛选

@@ -37,6 +37,10 @@
             <van-button icon="location" @click="address"></van-button>
           </van-col>
         </van-row>
+        <van-grid clickable :column-num="2">
+          <van-grid-item icon="like-o" text="收藏" @click="collection"/>
+          <van-grid-item icon="notes-o" text="足迹" @click="footprint"/>
+        </van-grid>
       </van-cell-group>
       <div style="margin: 16px;">
         <van-button round  type="info" size="small" native-type="submit" @click="logout">退出登录</van-button>
@@ -51,6 +55,7 @@ export default {
     const module = '/cms-customer'
     return {
       customer: {
+        id:'',
         account:"007",
         nickyname: 'hlo',
         phone:13545878954,
@@ -67,6 +72,7 @@ export default {
       this.customer.nickyname = response.nickyName
       this.customer.phone = response.phone
       this.customer.sex = response.sex
+      this.customer.id = this.$store.getters.GET_CUSTOMERID
     })
   },
   methods: {
@@ -94,6 +100,18 @@ export default {
         query:{
           identify: 'userDetail'
         }
+      })
+    },
+    footprint(){
+      var customer=this.customer
+      this.$router.push({
+        path: '/footprint',query: {customer:this.customer}
+      })
+    },
+    collection(){
+      var customer=this.customer
+      this.$router.push({
+        path: '/collection',query: {customer:this.customer}
       })
     }
 }}

@@ -173,7 +173,7 @@ export default {
     onSubmit() {
       for (let i = 0; i < this.checkGroup.length; i++) {
         this.orderList[i] = this.checkGroup[i]
-
+          console.log(this.orderList[i])
       }
       this.$router.push({
         path: 'order',

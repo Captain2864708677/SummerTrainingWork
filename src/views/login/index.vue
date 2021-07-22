@@ -21,7 +21,7 @@
             </van-cell-group>
 
             <van-row style="text-align: center">
-                <van-col span="4"></van-col>
+                <van-col span="3"></van-col>
                 <van-col style="width: 120px;height: 50px" span="6">
                           <van-button round block type="primary" native-type="submit">
                             登录

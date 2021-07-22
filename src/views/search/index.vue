@@ -69,11 +69,7 @@
         data(){
             return{
                 histories:[
-                    '瓜',
-                    'aaaea',
-                    'aaaav',
-                    'aaaad',
-                    'aaaaf',
+                    '衬'
                 ],
                 query: {
                     findItem:''

@@ -27,7 +27,7 @@
       <van-goods-action>
         <van-goods-action-icon icon="chat-o" text="客服" color="#ee0a24" />
         <van-goods-action-icon icon="cart-o" text="购物车" to="/cart" />
-        <van-goods-action-icon icon="star" text="已收藏" color="#ff5000" />
+        <van-goods-action-icon icon="star" :text="text" color="#ff5000" @click="setCollection" />
         <van-goods-action-button type="warning" text="加入购物车" @click="showAddCart(0)"/>
         <van-goods-action-button type="danger" text="立即购买" @click="showAddCart(1)" />
       </van-goods-action>
@@ -74,7 +74,7 @@ export default {
     const proId = this.productId
     const module = '/pms-product'
     return {
-
+      text: '',
       cartPop: {
         cartShow: false,
         component: () => import('./addtocart')
@@ -82,6 +82,14 @@ export default {
 
 
       url: {
+        //设置收藏
+        setCollection: '/cms-footprint/setCollection',
+
+        //获取收藏信息
+        getCollection: '/cms-footprint/getCollection',
+
+        //获取对应productId的一些数据（一定会获取到）
+        getFootPrint: '/cms-footprint/getFootPrint',
         //通过Id获取product对象
         getProductById: module + '/getProductById',
 
@@ -119,8 +127,25 @@ export default {
       },
       //通过productId获取product对象
       query: {
+        customerId:this.$store.getters.GET_CUSTOMERID,
         productId: proId
       },
+      //通过传值判断找出是否有已收藏的商品
+      queryCollection: {
+        proID: null,
+        isFP: 1
+      },
+
+      queryFootPrint: {
+        collOneId: 0,
+        collTwoId: null
+      },
+
+      //获取收藏表的一行信息
+      coll: null,
+      //获取对应productId的一些数据（一定会获取到）
+      coll2: null,
+
       //下面两个是有关图片数组存储时用的
       imgs: '',
       arr: [],
@@ -130,7 +155,8 @@ export default {
     }
   },
   created() {
-    console.log(this.productId)
+    this.getCollection()
+    this.getFootPrint()
     this.getProductById()
   },
   methods: {
@@ -185,11 +211,49 @@ export default {
       this.cartValue = cartValue
       this.cartPop.cartShow = true
     },
-
     //关闭加入购物车一栏
     closeAddCart(){
       this.cartValue = -1
       this.cartPop.cartShow = false
+    },
+    //获取对应productId的一些数据（一定会获取到）
+    getFootPrint(){
+      this.get(this.url.getFootPrint, {produId:this.productId}, response => {
+        this.coll2 = response
+        console.log(this.coll2[0])
+      })
+    },
+
+
+    //获取是否有收藏
+    getCollection(){
+      this.queryCollection.proID = this.productId
+      this.get(this.url.getCollection, this.queryCollection, response => {
+        this.coll = response
+        if (this.coll === null){
+          this.text = '收藏'
+        }else {
+          this.text = '已收藏'
+        }
+        console.log('coll' + response)
+      })
+    },
+
+    setCollection(){
+      if (this.coll !== null){
+        this.queryFootPrint.collOneId = this.coll.id
+        this.queryFootPrint.collTwoId = this.coll2[0].id
+        this.post(this.url.setCollection, this.queryFootPrint, response => {
+          console.log(response)
+          this.$emit('update:visible', false)
+        })
+      }else {
+        this.queryFootPrint.collTwoId = this.coll2[0].id
+        this.post(this.url.setCollection, this.queryFootPrint, response => {
+          console.log(response)
+          this.$emit('update:visible', false)
+        })
+      }
     }
   }
 

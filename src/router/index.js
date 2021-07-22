@@ -107,6 +107,15 @@ const routes = [
                 path: '/SearchIndex',
                 name: 'SearchIndex',
                 component: () => import('@/views/search')
+            },{
+                path: '/collection',
+                name: 'Collection',
+                component: () => import('@/views/user/collection')
+            },
+            {
+                path: '/footprint',
+                name: 'FootPrint',
+                component: () => import('@/views/user/footprint')
             }
         ]
     }

@@ -1,15 +1,24 @@
 <template>
-  <van-address-edit
-      :address-info="AddressInfo"
-      :show-postal="true"
-      :show-set-default="true"
-      :show-search-result="true"
-      :show-detail="true"
-      :show-area="false"
-      :tel-maxlength="11"
-      @save="onSave"
-      @change-default="change"
-  />
+  <div>
+    <van-nav-bar
+        title="收货地址"
+        left-text="返回"
+        left-arrow
+        @click-left="onClickLeft"
+    ></van-nav-bar>
+    <van-address-edit
+        :address-info="AddressInfo"
+        :show-postal="true"
+        :show-set-default="true"
+        :show-search-result="true"
+        :show-detail="true"
+        :show-area="false"
+        :tel-maxlength="11"
+        @save="onSave"
+        @change-default="change"
+    />
+  </div>
+
 </template>
 
 <script>
@@ -54,7 +63,7 @@ export default {
   methods:{
     onSave(content){
       this.form.id = content.id
-      this.form.customerId = content.customerId
+      this.form.customerId = this.$store.getters.GET_CUSTOMERID
       this.form.address =content.addressDetail
       this.form.name = content.name
       this.form.tel = content.tel
@@ -65,6 +74,8 @@ export default {
       this.post(this.url.update,this.form,()=>{
         this.$router.push('./addressMs')
       })
+    },onClickLeft(){
+      this.$router.go(-1)
     },
     change(value){
       if (value){

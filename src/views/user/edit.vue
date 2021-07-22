@@ -39,10 +39,16 @@
                          { pattern: /^1[3456789]\d{9}$/, message: '手机号码格式错误！' },]"/>
             </van-cell-group>
         </van-form>
-        <div style="margin: 16px;">
+      <div style="margin: 16px;">
+        <van-row>
+          <van-col span="12">
             <van-button round  type="primary" size="small" native-type="submit" @click="confirm">确定</van-button>
+          </van-col>
+          <van-col span="12">
             <van-button round  type="info" size="small" native-type="submit" @click="cansel">取消</van-button>
-        </div>
+          </van-col>
+        </van-row>
+      </div>
     </div>
 
 </template>

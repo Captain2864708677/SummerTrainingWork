@@ -18,7 +18,7 @@
           tag="聚划算"
           :title="item.productName"
           :desc="item.detail"
-          thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+          :thumb=img(item.img)
       >
         <template #footer>
           <van-row class="card-foot">

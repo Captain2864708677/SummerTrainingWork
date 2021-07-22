@@ -21,12 +21,15 @@
                     :num=item.productNum
                     :thumb=img(item.img)
                     >
-                          <template #title>
-                            <div style="text-align: right" @click="orderDetail(item.id)">详情</div>
-                          </template>
+<!--                          <template #desc>-->
+<!--                            <div style="text-align: right" @click="orderDetail(item.id)">详情</div>-->
+<!--                          </template>-->
                             <template #footer>
                                 <van-row class="card-foot">
-                                    <van-col span="7"></van-col>
+                                    <van-col span="2">
+                                      <div style="text-align: right" @click="orderDetail(item.id)">详情</div>
+                                    </van-col>
+                                  <van-col span="5"></van-col>
                                     <van-col span="8">
                                         <div style="color: red;font-size:12px ">总价：￥{{item.price*item.productNum}}</div>
                                     </van-col>

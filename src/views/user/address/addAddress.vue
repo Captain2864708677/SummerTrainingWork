@@ -1,13 +1,22 @@
 <template>
-  <van-address-edit
-      :area-list="areaList"
-      show-postal
-      show-set-default
-      show-search-result
-      :tel-maxlength="11"
-      :area-columns-placeholder="['请选择', '请选择', '请选择']"
-      @save="onSave"
-  />
+  <div>
+    <van-nav-bar
+        title="收货地址"
+        left-text="返回"
+        left-arrow
+        @click-left="onClickLeft"
+    ></van-nav-bar>
+    <van-address-edit
+        :area-list="areaList"
+        show-postal
+        show-set-default
+        show-search-result
+        :tel-maxlength="11"
+        :area-columns-placeholder="['请选择', '请选择', '请选择']"
+        @save="onSave"
+    />
+  </div>
+
 </template>
 
 <script>
@@ -47,6 +56,8 @@ export default {
       this.post(this.url.add,this.form,()=>{
         this.$router.push('./addressMs')
       })
+    },onClickLeft(){
+      this.$router.go(-1)
     }
   }
 }
