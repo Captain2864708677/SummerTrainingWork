@@ -52,8 +52,6 @@
         @closeAddCart="closeAddCart"
       ></component>
     </van-popup>
-
-
   </div>
 
 </template>
@@ -79,7 +77,7 @@ export default {
         cartShow: false,
         component: () => import('./addtocart')
       },
-
+      isFc:null,
 
       url: {
         //设置收藏
@@ -87,7 +85,7 @@ export default {
 
         //获取收藏信息
         getCollection: '/cms-footprint/getCollection',
-
+        isCollection: '/cms-footprint/isCollection',
         //获取对应productId的一些数据（一定会获取到）
         getFootPrint: '/cms-footprint/getFootPrint',
         //通过Id获取product对象
@@ -155,7 +153,7 @@ export default {
     }
   },
   created() {
-    this.getCollection()
+    this.isCollection()
     this.getFootPrint()
     this.getProductById()
   },
@@ -220,17 +218,16 @@ export default {
     getFootPrint(){
       this.get(this.url.getFootPrint, {produId:this.productId}, response => {
         this.coll2 = response
-        console.log(this.coll2[0])
       })
     },
 
 
     //获取是否有收藏
-    getCollection(){
+    isCollection(){
       this.queryCollection.proID = this.productId
-      this.get(this.url.getCollection, this.queryCollection, response => {
-        this.coll = response
-        if (this.coll === null){
+      this.get(this.url.isCollection, {customerId:this.$store.getters.GET_CUSTOMERID,productId:this.productId}, response => {
+        this.isFc = response
+        if (response === 0){
           this.text = '收藏'
         }else {
           this.text = '已收藏'
@@ -238,22 +235,11 @@ export default {
         console.log('coll' + response)
       })
     },
-
     setCollection(){
-      if (this.coll !== null){
-        this.queryFootPrint.collOneId = this.coll.id
-        this.queryFootPrint.collTwoId = this.coll2[0].id
-        this.post(this.url.setCollection, this.queryFootPrint, response => {
-          console.log(response)
+        this.post(this.url.setCollection,{customerId:this.$store.getters.GET_CUSTOMERID,productId:this.productId,isFc:this.isFc},()=>{
+          console.log("sadsadsadasd")
           this.$emit('update:visible', false)
         })
-      }else {
-        this.queryFootPrint.collTwoId = this.coll2[0].id
-        this.post(this.url.setCollection, this.queryFootPrint, response => {
-          console.log(response)
-          this.$emit('update:visible', false)
-        })
-      }
     }
   }
 

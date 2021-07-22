@@ -137,7 +137,7 @@ export default {
     },
     onClickLeft(){
       //提交失败，进入订单状态界面
-      this.$router.go(-1)
+      this.$router.push('/homepage')
     },
     address(){
       this.$router.push({path:'/addressSelect',query:{

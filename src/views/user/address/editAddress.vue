@@ -15,7 +15,7 @@
         :show-area="false"
         :tel-maxlength="11"
         @save="onSave"
-        @change-default="change"
+        @change-default="change(true)"
     />
   </div>
 
@@ -51,7 +51,7 @@ export default {
       }
     }
   },
-  mounted(){
+  created(){
     this.AddressInfo.id= this.$route.query.id
     this.AddressInfo.customerId= this.$route.query.customerId
     this.AddressInfo.name= this.$route.query.name
@@ -79,7 +79,7 @@ export default {
     },
     change(value){
       if (value){
-        this.get(this.url.setDefault,{customerId:this.AddressInfo.customerId},response =>{
+        this.get(this.url.setDefault,{customerId:this.$store.getters.GET_CUSTOMERID},response =>{
           Toast.success(response)
         })
       }

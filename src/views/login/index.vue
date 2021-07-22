@@ -61,7 +61,6 @@
         methods: {
             login() {
                this.post(this.url.login,this.customer,response =>{
-                 console.log(response)
                  this.$store.commit('SET_TOKEN',response.token)
                  this.$store.commit('SET_CUSTOMERID',response.customer.id)
                  this.$router.push('/homepage')
