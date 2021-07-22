@@ -20,8 +20,10 @@
                     :desc=item.detail
                     :num=item.productNum
                     :thumb=img(item.img)
-                    @click="orderDetail(item.id)"
                     >
+                          <template #title>
+                            <div style="text-align: right" @click="orderDetail(item.id)">详情</div>
+                          </template>
                             <template #footer>
                                 <van-row class="card-foot">
                                     <van-col span="7"></van-col>
@@ -65,7 +67,7 @@
                     finished: false,
                 },
                 query:{
-                    customerId:1,
+                    customerId:this.$store.getters.GET_CUSTOMERID,
                     orderId:'',
                 },
                 orderList:[],
@@ -87,7 +89,7 @@
         create(){
             // this.productId = -1
             this.select = 0
-            console.log(this.select)
+            console.log('select',this.select)
             this.listonLoad()
         },
         methods:{
@@ -119,12 +121,15 @@
               this.finished = true;
           },
             pay(id){
-                this.query.orderId = id
-                this.get('http://127.0.0.1:8090/cms-order/pay',this.query,response =>{
-                    console.log(response)
-                    this.listonLoad()
-                    console.log("payed",this.liststate.list)
-                })
+              let s = []
+              s.push(id.toString())
+              console.log(typeof(s),s)
+              console.log(typeof (1))
+              this.$router.push({
+                    path:'/beforePay',
+                    query:{
+                      cartList:[id.toString()]
+                    }})
             },
             take(id){
                 this.query.orderId = id
@@ -137,6 +142,9 @@
             orderDetail(orderid){
                 this.$router.push({path:'/orderDetail',query:{orderId:orderid}})
             },
+          asjkd(){
+          // @click="orderDetail(item.id)"-->
+          }
         },
     }
 </script>

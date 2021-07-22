@@ -56,6 +56,24 @@ Vue.use(Plugin)
 
 export default Plugin;
 
+const syncrequest = async (url, method, params) => {
+  const zymconfig ={
+    url: url,
+    method: method
+  }
+  if(method==='get'){
+    zymconfig.params = params
+  }else{
+    const formData = new FormData()
+    for(let key in params){
+      formData.append(key,params[key])
+    }
+    zymconfig.data = formData
+  }
+  const result = await _axios.request(zymconfig)
+  return result
+}
+
 const request = (url, method, params, callback) => {
   const zymconfig ={
     url: url,
@@ -87,6 +105,7 @@ const request = (url, method, params, callback) => {
     })
   })
 }
+Vue.prototype.syncrequest = syncrequest
 Vue.prototype.request = request
 Vue.prototype.get = (url, params, callback)=>{
   request(url, 'get',params, response =>{

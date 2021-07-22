@@ -57,9 +57,9 @@
         },
         methods: {
             confirm(){
-                axios.get('http://127.0.0.1:8083/cms-customer/editPwd', {
+                axios.get('http://127.0.0.1:8090/cms-customer/editPwd', {
                     params: {
-                        id: this.customer.id,
+                        id: this.$store.getters.GET_CUSTOMERID,
                         password:this.value,
                         password1: this.password1
                     }
@@ -72,6 +72,7 @@
                     }
                     if(message=="修改用户密码成功"){
                         this.$toast('修改用户密码成功,请重新登录');
+                        this.$store.commit('SET_TOKEN','')
                         this.$router.push({
                             path: '/login'
                         })

@@ -59,7 +59,7 @@ export default {
     },
     onClickLeft(){
       //回到主界面
-      this.$router.push('/order/state')
+      this.$router.push('/state')
     }
   }
 }

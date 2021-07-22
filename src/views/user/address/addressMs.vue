@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     getAddress() {
-      this.get(this.url.get, {customerId: 1}, response => {
+      this.get(this.url.get, {customerId: this.$store.getters.GET_CUSTOMERID}, response => {
         this.list = response
         for (let i = 0; i < response.length; i++) {
           if (response[i].isDefault === 1) {

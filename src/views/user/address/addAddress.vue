@@ -36,7 +36,7 @@ export default {
   },
   methods:{
     onSave(content){
-      this.form.customerId = 1
+      this.form.customerId = this.$store.getters.GET_CUSTOMERID
       this.form.address = content.province +content.city +content.county +content.addressDetail
       this.form.name = content.name
       this.form.tel = content.tel

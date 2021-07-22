@@ -28,9 +28,6 @@ Vue.use(Swipe).use(SwipeItem).use(Icon);
 Vue.use(Dialog)
 Vue.config.productionTip = false
 
-Vue.prototype.img = (path) =>{
-  return 'http://192.168.80.151:9000/images/' + path
-}
 
 new Vue({
   router,

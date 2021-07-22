@@ -175,6 +175,7 @@ export default {
       this.form.productId = this.productId
       this.form.productName = this.product.name
       this.form.img = this.product.img
+      this.form.customerId = this.$store.getters.GET_CUSTOMERID
       if (this.cartValue === 0){
         this.post(this.url.add, this.form, () => {
           this.$emit('closeAddCart')
@@ -182,9 +183,14 @@ export default {
         })
       }else {
         //跳转到直接下单页面
-
-
-
+        let orderList = []
+        orderList.push(this.form)
+        this.$router.push({
+          path: 'order',
+          query: {
+            cartList: orderList
+          }
+        })
       }
     }
   }

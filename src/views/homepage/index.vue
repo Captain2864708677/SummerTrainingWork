@@ -15,7 +15,7 @@
                               @click="toSearch"/>
                   </van-col>
                   <van-col span="3">
-                      <div class="login-btn" @click="login">登录</div>
+                      <div v-if="!$store.getters.GET_TOKEN" class="login-btn" @click="login">登录</div>
                   </van-col>
               </van-row>
 
@@ -107,10 +107,10 @@ export default {
         })
     },
     toSearch(){
-          this.$router.push('../search')
+          this.$router.push('/SearchIndex')
     },
     login(){
-      this.$router.push()
+      this.$router.push('/login')
     }
   }
 }

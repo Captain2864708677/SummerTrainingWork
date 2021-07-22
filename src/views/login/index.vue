@@ -20,22 +20,24 @@
                 />
             </van-cell-group>
 
-            <van-row>
-                <van-col span="6"></van-col>
-                <van-col span="12">
-                    <div style="margin: 16px;text-align: center;">
-                        <van-button round block type="primary" native-type="submit">
+            <van-row style="text-align: center">
+                <van-col span="4"></van-col>
+                <van-col style="width: 120px;height: 50px" span="6">
+                          <van-button round block type="primary" native-type="submit">
                             登录
-                        </van-button>
-                        <div class="reg">
-                            <div @click="toRegister" size="mini">没有账号？立即注册</div>
-                        </div>
-                    </div>
+                          </van-button>
+<!--                      <div class="reg">-->
+<!--                        <div size="mini">没有账号？立即注册</div>-->
+<!--                      </div>-->
                 </van-col>
-                <van-col span="6"></van-col>
+              <van-col span="2">&nbsp</van-col>
+              <van-col style="width: 120px;height: 50px" span="6">
+                <van-button round block type="primary"  @click="toRegister">
+                  注册
+                </van-button>
+              </van-col>
+                <van-col span="5"></van-col>
             </van-row>
-
-
         </van-form>
 
     </div>
@@ -45,39 +47,28 @@
     export default {
         name: "Login",
         data() {
+          const module = '/cms-customer'
             return {
                 customer: {
-                    account:'',
-                    password:''
-                }
+                  account: '',
+                  password: ''
+                },
+              url:{
+                login:module+'/login'
+              }
             };
         },
         methods: {
             login() {
-                axios.get('http://127.0.0.1:8083/cms-customer/login', {
-                    params: {
-                        account: this.customer.account,
-                        password: this.customer.password
-                    }
-                }).then(function (response) {
-                    console.log(response);
-                    var customer = response.data;
-                    if(customer === null){
-                        _this.$message({
-                            message: '用户名或密码错误',
-                            type: 'warning'
-                        });
-                    }else{
-                        var customer=response.data.obj.customer
-                        console.log(customer);
-                        this.$router.push({path: '/user',query: { customer }});
-                    }
-                }.bind(this))
+               this.post(this.url.login,this.customer,response =>{
+                 console.log(response)
+                 this.$store.commit('SET_TOKEN',response.token)
+                 this.$store.commit('SET_CUSTOMERID',response.customer.id)
+                 this.$router.push('/homepage')
+               })
             },
             toRegister(){
-                this.$router.push({
-                    path: '/register'
-                })
+                this.$router.push('/register')
             }
         }
     }

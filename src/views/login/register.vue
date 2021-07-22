@@ -88,7 +88,7 @@
                     Toast('密码输入两次不一致！');
                 }
                 else{
-                    axios.get('http://127.0.0.1:8083/cms-customer/add', {
+                    axios.get('http://127.0.0.1:8090/cms-customer/add', {
                         params: {
                             account: this.customer.account,
                             nickyName:this.customer.nickyName,

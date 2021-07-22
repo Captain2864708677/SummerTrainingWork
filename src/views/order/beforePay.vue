@@ -39,12 +39,29 @@ export default {
       show2:false,
       title1:'微信支付',
       title2:'支付宝支付',
+      orderIdList:[],
+      cardList:[]
+    }
+  },
+  created() {
+    let s = this.$route.query.cartList
+    console.log(typeof(s),s)
+    if(typeof(s) === "object"){//单个订单
+      let id = parseInt(s)
+      this.orderIdList.push(id)
+    }else{
+      let list = this.$route.query.cartList.split(',')
+      let ids = []
+      for(let i =0;i<list.length;i++){
+        ids.push(parseInt(list[i]))
+      }
+      this.orderIdList = ids
     }
   },
   methods:{
     onClickLeft(){
       //支付失败，进入订单状态界面
-      this.$router.push({path:'/state',query:{stateId:1}})
+      this.$router.push('/state')
     },
     wechat(){
       this.show1 = true
@@ -53,7 +70,11 @@ export default {
       this.show2 = true
     },
     success(){
-      this.$router.push('/afterPay')
+      console.log(this.orderIdList)
+      for (let i = 0;i<this.orderIdList.length;i++){
+        this.get("http://127.0.0.1:8090/cms-order/pay",{orderId:this.orderIdList[i]},()=>{})
+      }
+      this.$router.push('/state')
     }
   }
 }

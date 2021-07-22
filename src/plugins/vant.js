@@ -7,6 +7,7 @@ import {ContactCard} from "vant";
 import {SubmitBar} from "vant";
 import {Grid,GridItem} from "vant";
 import { Card } from 'vant';
+import {Toast} from "vant";
 
 Vue.use(Vant);
 Vue.use(NavBar);

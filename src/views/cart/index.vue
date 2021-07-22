@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div>
       <div id="mine">
         <!--导航栏-->
@@ -37,7 +36,6 @@
           <van-checkbox :name="item"
                         checked-color=red
           ></van-checkbox>
-
           <van-card
               tag="聚划算"
               class="van-card"
@@ -113,7 +111,7 @@ export default {
         delAll: '/cms-shopping-cart/delAll'
       },
       query: {
-        productName: ''
+        customerId:this.$store.getters.GET_CUSTOMERID
       }
     }
   },
@@ -125,7 +123,6 @@ export default {
     getData() {
       this.get(this.url.list, this.query, response => {
         this.cartList = response
-
       })
     },
     checkAll() {
@@ -181,7 +178,7 @@ export default {
       this.$router.push({
         path: 'order',
         query: {
-          orderList: this.orderList,
+          cartList: this.orderList,
           identity: 1
         }
       })
@@ -222,7 +219,7 @@ export default {
 
 #mine /deep/ .van-nav-bar__title {
   color: white !important;
-  font-size: 1.4rem;
+  font-size: 16px;
 }
 
 #mine /deep/ .van-icon {

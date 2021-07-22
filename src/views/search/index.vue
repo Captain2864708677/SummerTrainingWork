@@ -108,7 +108,7 @@
                   this.show1 = false
               }
 
-              if(this.query.findItem != '' && (this.histories.indexOf(this.findItem)!=-1)){//搜索关键字不为空且历史记录中不存在
+              if(typeof(this.query.findItem) != "undefined" && (this.histories.indexOf(this.findItem)!=-1)){//搜索关键字不为空且历史记录中不存在
                   this.histories.unshift(this.query.findItem)
                   console.log('findItem',this.query.findItem)
                   // this.$router.push({path:'../tab',query:{select:this.findItem}})

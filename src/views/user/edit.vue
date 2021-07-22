@@ -57,9 +57,9 @@
         },
         methods: {
             confirm(){
-                axios.get('http://127.0.0.1:8083/cms-customer/update', {
+                axios.get('http://127.0.0.1:8090/cms-customer/update', {
                     params: {
-                        id: this.customer.id,
+                        id: this.$store.getters.GET_CUSTOMERID,
                         account: this.customer.account,
                         nickyName:this.customer.nickyName,
                         sex:this.customer.sex,

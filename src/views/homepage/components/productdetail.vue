@@ -206,7 +206,7 @@ export default {
 
 .scroll{
   overflow: scroll;
-  height: 400px;
+  height: 510px;
   .titlePosition{
     float: left;
     vertical-align: middle;

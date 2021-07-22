@@ -10,22 +10,21 @@
     "@vant/area-data": "^1.1.1",
     "amfe-flexible": "^2.2.1",
     "core-js": "^3.6.5",
-    "postcss-pxtorem": "^5.1.1",
     "lib-flexible": "^0.3.2",
     "postcss-px2rem-exclude": "0.0.6",
+    "postcss-pxtorem": "^5.1.1",
     "vant": "^2.0.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "axios": "^0.18.0",
-    "babel-plugin-import": "^1.13.3",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
-    "postcss-pxtorem": "^5.1.1",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-vant": "^1.0.1",
     "vue-template-compiler": "^2.6.11"
