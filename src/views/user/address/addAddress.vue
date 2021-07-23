@@ -14,6 +14,7 @@
         :tel-maxlength="11"
         :area-columns-placeholder="['请选择', '请选择', '请选择']"
         @save="onSave"
+        @change-default="change(true)"
     />
   </div>
 
@@ -29,7 +30,8 @@ export default {
     return{
       url:{
         add : module+'/add',
-        update:module+'/update'
+        update:module+'/update',
+        setAllNotDefault:module+'/setAllNotDefaultWhenAdd'
       },
       form:{
         customerId:null,
@@ -58,6 +60,13 @@ export default {
       })
     },onClickLeft(){
       this.$router.go(-1)
+    },
+    change(value){
+      if (value){
+        this.post(this.url.setAllNotDefault,{customerId:this.$store.getters.GET_CUSTOMERID},response =>{
+          Toast.success(response)
+        })
+      }
     }
   }
 }
